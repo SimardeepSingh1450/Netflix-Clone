@@ -1,10 +1,14 @@
 //TIP TO START->Use the snippet rfce
 
+
 import React ,{useEffect, useState} from 'react';
+
+
 import axios from './axios_2';
 import "./Row.css";
 
 
+const base_url2="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Netflix_2015_N_logo.svg/1200px-Netflix_2015_N_logo.svg.png";
 const base_url="https://image.tmdb.org/t/p/original/";//Images for posters source
 
 
@@ -28,25 +32,27 @@ function Row({title,fetchUrl,isLargeRow}) {
   //SPECIAL NOTE->Whenever we are using any  variable inside useEffect which is passed from outside the {} of useEffect then we put that variable inside the dependency list[] because our useEffect is dependent on that variable.
   
  
-
-
-
  // console.log(movies);Used this line of code to see if movies variable now has movies array or not.
     
-  
+        
   return (
     <div className="row">
         {/*title->Here put NETFLIX ORIGINALS ,trending,etc*/}
         <h2>{title}</h2>
         
         <div className="row_posters">
+            
         {/*Several row posters inside this */}
         {movies.map(movie=>(
-            <img key={movie.id}  className={`row_poster ${isLargeRow && "row_posterLarge"}`} src={`${base_url}${isLargeRow?movie.poster_path:movie.backdrop_path}`} alt={movie.name}/>//NOTE->In this line of code we used key property which is a speciality of React to load high amount of media at a faster rate.
-        ))}
+            [
+            <img key={movie.id}  className={`row_poster ${isLargeRow && "row_posterLarge"}`} src={`${base_url}${isLargeRow?movie.poster_path:movie.backdrop_path}`}  alt={movie.name}/>,//NOTE->In this line of code we used key property which is a speciality of React to load large amount of media at a faster rate.
+            <div><img className={`row_poster ${"row_posterLarge2"}`} src={`${base_url2}`} alt={movie.name}/>
+            </div>            
+            ]
+            ))}
         </div>
         
-          
+        
 
     </div>
   );

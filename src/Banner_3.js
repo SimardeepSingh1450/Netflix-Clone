@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+
 import axios from './axios_2';
 import requests from './requests_1';
 import "./Banner.css"
@@ -18,14 +22,13 @@ useEffect(()=>{
 console.log(movie);
 
 
-
-
   return (
     <header className="banner"
     style ={{
         backgroundSize:"cover",
         backgroundImage:`url(
             "https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`,
+            
         backgroundPosition:"center center"
 
     }}
@@ -38,8 +41,8 @@ console.log(movie);
         </h1>
         {/*div with 2 buttons*/}
         <div className="banner_buttons">
-            <button className="banner_button">Play</button>
-            <button className="banner_button">My List</button>
+            <button className="banner_button"><FontAwesomeIcon icon={faPlay} style={{marginRight:'15px'}} />Play</button>
+            <button className="banner_button"><FontAwesomeIcon icon={faLayerGroup} style={{marginRight:'15px'}} />My List</button>
         </div>
 
         {/*Description*/}
@@ -51,7 +54,13 @@ console.log(movie);
         </div>
         <div className="banner--fadeBottom"/>
     </header>
+     
   )
+
+
+
 }
+
+
 
 export default Banner_3;
